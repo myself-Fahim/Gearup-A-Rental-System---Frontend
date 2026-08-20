@@ -1,12 +1,6 @@
 import React from 'react';
 import LoginForm from '../_components/LoginFormClient';
 
-
-
-
-
-
-
 const LoginPage = () => {
     return (
         <div className='min-h-screen flex justify-center items-center px-4'>

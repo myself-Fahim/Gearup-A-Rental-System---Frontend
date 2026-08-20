@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Roboto, Public_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Toaster } from "sonner";
 
 const publicSansHeading = Public_Sans({subsets:['latin'],variable:'--font-heading'});
 
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={cn("h-full", "antialiased", "font-sans", roboto.variable, publicSansHeading.variable)}
     >
-      <body className="min-h-full flex flex-col">
-        {children}
-
+      <body>
+        <main className="min-h-full flex flex-col">
+           {children}
+        </main>
+       <Toaster position="top-center" richColors></Toaster>
       </body>
     </html>
   );
