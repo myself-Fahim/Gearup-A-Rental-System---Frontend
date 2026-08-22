@@ -1,6 +1,7 @@
 "use server"
 
 import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
 type prevState = {
     success: boolean,
@@ -10,6 +11,22 @@ type prevState = {
         refreshToken: string
     }
 }
+
+type registerPrevState = {
+    success: boolean,
+    message: string,
+    data:{
+        id: string,
+        name: string,
+        email: string,  
+        role: string,
+        status: string,
+        image_url: string | null,
+        created_At: string,
+        updated_At: string
+    }
+}   
+    
 
 export const loginAction = async (prev_state: prevState, formData: FormData) => {
 
@@ -30,6 +47,7 @@ export const loginAction = async (prev_state: prevState, formData: FormData) => 
     })
     const result: prevState = await res.json()
 
+
     if (result.success) {
         const cookieStore = await cookies()
         cookieStore.set('accessToken', result.data.accessToken, {
@@ -42,8 +60,49 @@ export const loginAction = async (prev_state: prevState, formData: FormData) => 
             sameSite: "lax",
             maxAge: 60 * 60 * 24 * 15,
         })
+
+        redirect('/dashboard')
     }
-    
+
     return result
 
 }
+
+
+export const registerAction = async(reg_prev_state : registerPrevState,formData : FormData) =>{
+
+
+   
+
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const image = formData.get('image')
+    const role = formData.get('role')
+    const password = formData.get('password')
+
+    const payload = {
+        name,
+        email,
+         ...(image ? { image } : {}),
+        role,
+        password
+    }
+
+
+  
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/auth/register`,{
+        method:'POST',
+        headers : {
+            "content-type" : "application/json"
+        },
+        body:JSON.stringify(payload)
+    })
+
+    const result = await res.json()
+    return result
+
+
+}
+
+

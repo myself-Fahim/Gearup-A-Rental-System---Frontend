@@ -28,15 +28,13 @@ const initialState: initialStateType = {
 
 const LoginForm = () => {
     const [state, formAction, isPending] = useActionState(loginAction, initialState)
-    console.log(state, 'prev_state');
 
     useEffect(() => {
+      
         if (!state.message ) return
 
-        if (state.success) {
-            toast.success(state.message || 'Login successful')
-        }
-        else {
+       
+        if(!state.success) {
             toast.error(state.message || 'Login failed')
         }
     }, [state])
