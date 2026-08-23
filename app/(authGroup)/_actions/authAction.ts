@@ -8,25 +8,29 @@ type prevState = {
     message: string,
     data: {
         accessToken: string,
-        refreshToken: string
+        refreshToken: string,
+        user: {
+            role: string
+        }
+
     }
 }
 
 type registerPrevState = {
-    success: boolean,
-    message: string,
-    data:{
-        id: string,
-        name: string,
-        email: string,  
-        role: string,
-        status: string,
-        image_url: string | null,
-        created_At: string,
-        updated_At: string
+        success: boolean,
+        message: string,
+        data: {
+            id: string,
+            name: string,
+            email: string,
+            role: string,
+            status: string,
+            image_url: string | null,
+            created_At: string,
+            updated_At: string
+        }
     }
-}   
-    
+
 
 export const loginAction = async (prev_state: prevState, formData: FormData) => {
 
@@ -61,7 +65,20 @@ export const loginAction = async (prev_state: prevState, formData: FormData) => 
             maxAge: 60 * 60 * 24 * 15,
         })
 
-        redirect('/dashboard')
+
+        if (result.data.user.role === 'ADMIN') {
+            redirect('/admin-dashboard')
+        }
+
+        else if (result.data.user.role === 'PROVIDER') {
+            redirect('/provider-dashboard')
+        }
+
+        else {
+            redirect('/dashboard')
+        }
+
+
     }
 
     return result
@@ -69,10 +86,10 @@ export const loginAction = async (prev_state: prevState, formData: FormData) => 
 }
 
 
-export const registerAction = async(reg_prev_state : registerPrevState,formData : FormData) =>{
+export const registerAction = async (reg_prev_state: registerPrevState, formData: FormData) => {
 
 
-   
+
 
     const name = formData.get('name')
     const email = formData.get('email')
@@ -83,20 +100,20 @@ export const registerAction = async(reg_prev_state : registerPrevState,formData 
     const payload = {
         name,
         email,
-         ...(image ? { image } : {}),
+        ...(image ? { image } : {}),
         role,
         password
     }
 
 
-  
 
-    const res = await fetch(`${process.env.SERVER_API_URL}/api/auth/register`,{
-        method:'POST',
-        headers : {
-            "content-type" : "application/json"
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+            "content-type": "application/json"
         },
-        body:JSON.stringify(payload)
+        body: JSON.stringify(payload)
     })
 
     const result = await res.json()

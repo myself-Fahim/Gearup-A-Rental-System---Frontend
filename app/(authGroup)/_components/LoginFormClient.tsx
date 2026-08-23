@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import React, { useActionState, useEffect } from 'react';
 import { loginAction } from '../_actions/authAction';
 import { toast } from 'sonner';
+import Link from 'next/link';
 
 
 type initialStateType = {
@@ -58,6 +59,8 @@ const LoginForm = () => {
                     <Button type='submit' variant={"default"} size={"lg"}>
                         {isPending ? 'loading...' : 'login'}
                     </Button>
+
+                    <p className='text-center'>Don't have any account? <Link href={'/register'} className='underline'>Register</Link></p>
                 </Card>
 
             </form>
