@@ -16,7 +16,6 @@ export const getMe = async () => {
     }
 
 
-
     const res = await fetch(`${process.env.SERVER_API_URL}/api/auth/me`, {
       
         headers: {
@@ -30,7 +29,7 @@ export const getMe = async () => {
         }
     })
 
-    const result = res.json()
+    const result = await res.json()
     return result
 
 }

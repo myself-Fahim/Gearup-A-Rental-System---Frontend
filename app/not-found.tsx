@@ -26,7 +26,7 @@ export default function NotFound() {
                     This gear is off track.
                 </h1>
                 <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground sm:text-base">
-                    The page you’re looking for may not existed.
+                    The page you’re looking for may not be existed.
                 </p>
 
                 <Link
