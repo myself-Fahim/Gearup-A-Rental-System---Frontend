@@ -13,7 +13,10 @@ type initialStateType = {
     message: string,
     data: {
         accessToken: string,
-        refreshToken: string
+        refreshToken: string,
+        user: {
+            role: string
+        }
     }
 }
 
@@ -22,7 +25,10 @@ const initialState: initialStateType = {
     message: "",
     data: {
         accessToken: "",
-        refreshToken: ""
+        refreshToken: "",
+        user: {
+            role: ""
+        },
     }
 
 }
@@ -31,11 +37,11 @@ const LoginForm = () => {
     const [state, formAction, isPending] = useActionState(loginAction, initialState)
 
     useEffect(() => {
-      
-        if (!state.message ) return
 
-       
-        if(!state.success) {
+        if (!state.message) return
+
+
+        if (!state.success) {
             toast.error(state.message || 'Login failed')
         }
     }, [state])
@@ -60,7 +66,7 @@ const LoginForm = () => {
                         {isPending ? 'loading...' : 'login'}
                     </Button>
 
-                    <p className='text-center'>Don't have any account? <Link href={'/register'} className='underline'>Register</Link></p>
+                    <p className='text-center'>Don&apos;t have any account? <Link href={'/register'} className='underline'>Register</Link></p>
                 </Card>
 
             </form>

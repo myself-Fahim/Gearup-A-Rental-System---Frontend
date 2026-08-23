@@ -37,7 +37,7 @@ const routes = [
 
 // 2. Items shown in the user dropdown menu — edit this array to add/remove items
 const dropdownItems = [
-    { label: "Profile", href: "/dashboard/profile", icon: User },
+    { label: "Profile", href: "", icon: User },
     { label: "Settings", href: "/settings", icon: Settings },
 ];
 
@@ -165,7 +165,7 @@ export default function Navbar({ user }: userProps) {
                                             </AvatarFallback>
                                         }
                                     </Avatar>
-                                    
+
                                 </Button>
                             </DropdownMenuTrigger>
 
@@ -182,13 +182,34 @@ export default function Navbar({ user }: userProps) {
                                         key={item.label}
                                         asChild
                                     >
-                                        <Link
-                                            href={item.href}
-                                            className="flex cursor-pointer items-center gap-2"
-                                        >
-                                            <item.icon className="h-4 w-4" />
-                                            {item.label}
-                                        </Link>
+
+                                        {
+                                            item.label === 'Profile' 
+                                            ?
+                                                user.data.role === 'ADMIN' || user.data.role === 'PROVIDER' ?
+                                                    <Link
+                                                        href={`/${user.data.role.toLowerCase()}-dashboard/profile`}
+                                                        className="flex cursor-pointer items-center gap-2"
+                                                    >
+                                                        <item.icon className="h-4 w-4" />
+                                                        {item.label}
+                                                    </Link> : <Link
+                                                        href={`/dashboard/profile`}
+                                                        className="flex cursor-pointer items-center gap-2"
+                                                    >
+                                                        <item.icon className="h-4 w-4" />
+                                                        {item.label}
+                                                    </Link>
+                                            :
+                                            <Link
+                                                    href={item.href}
+                                                    className="flex cursor-pointer items-center gap-2"
+                                                >
+                                                    <item.icon className="h-4 w-4" />
+                                                    {item.label}
+                                            </Link>
+                                        }
+
                                     </DropdownMenuItem>
                                 ))}
 
