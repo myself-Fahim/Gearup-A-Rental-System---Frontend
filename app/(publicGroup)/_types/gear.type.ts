@@ -9,6 +9,9 @@ export type TGear = {
     is_available : boolean;
     created_At : string;
     updated_At : string;
+    category:{
+        name : string
+    }
 }
 
 

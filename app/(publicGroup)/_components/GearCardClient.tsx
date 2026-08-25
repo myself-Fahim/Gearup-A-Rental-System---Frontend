@@ -35,6 +35,9 @@ const GearCard = ({gear}: { gear: TGear }) => {
                     <CalendarDays className="size-3.5" />
                     {gear.available_stock} {gear.available_stock === 1 ? 'unit' : 'units'} in stock
                 </CardDescription>
+                <Badge className="w-fit max-w-full border-0 bg-chart-3/15 px-2.5 py-1 text-chart-5 hover:bg-chart-3/15">
+                    <span className="truncate"> {gear.category.name}</span>
+                </Badge>
             </CardHeader>
             
             <CardFooter className="flex items-center justify-between border-t border-border/70 px-5 py-4">
