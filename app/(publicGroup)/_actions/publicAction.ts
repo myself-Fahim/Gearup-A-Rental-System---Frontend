@@ -6,14 +6,28 @@ export const getAllGears = async ({ searchQuery }: {
 
     try {
 
+        const params = new URLSearchParams()
 
-        const search = searchQuery?.search ? `?search=${searchQuery.search}`:''
-        const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/${search}`, {
+        
+        if(searchQuery?.search){
+            params.set('search',String(searchQuery?.search))
+        }
+
+        if(searchQuery?.category){
+            params.set('category',String(searchQuery.category))
+        }
+
+        if(searchQuery?.isAvailable){
+             params.set('isAvailable',String(searchQuery.isAvailable))
+        }
+
+        const queryString = params.toString()
+
+         
+
+        // const search = searchQuery?.search ? `?search=${searchQuery.search}` : ''
+        const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/?${queryString}`, {
             cache: 'no-store',
-            // next: {
-            //     revalidate: 60 * 60 * 2,
-            //     tags: ['allGears']
-            // }
         })
         const result = await res.json()
 
@@ -23,4 +37,26 @@ export const getAllGears = async ({ searchQuery }: {
     catch (err: unknown) {
         console.log(err);
     }
+}
+
+export const getAllCategory = async () => {
+
+
+    try {
+
+        const res = await fetch(`${process.env.SERVER_API_URL}/api/categories`, {
+            cache: 'force-cache',
+            next: {
+                revalidate: 60 * 60 * 24 * 5,
+                tags: ['categories']
+            }
+        })
+
+        const result = await res.json()
+        return result
+
+    } catch (err : unknown) {
+        console.log(err);
+    }
+
 }

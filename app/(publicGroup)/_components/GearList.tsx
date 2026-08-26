@@ -7,11 +7,11 @@ const GearList = async ({ searchParams }: {
     searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }) => {
 
-    const searchQuery = await searchParams
+    const searchQuery = await searchParams;
     const allGearData = await getAllGears({ searchQuery })
 
 
-    if (!allGearData)
+    if (!allGearData || allGearData.length === 0 )
         return <p className='text-center text-gray-500 mt-20 bg-white'>No data found</p>
 
     return (

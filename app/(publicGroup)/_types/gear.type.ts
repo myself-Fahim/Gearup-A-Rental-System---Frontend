@@ -15,6 +15,14 @@ export type TGear = {
 }
 
 
+export type ICategory = {
+    id: string;
+    name: string;
+    description: string;
+    createdAt: string;  
+}
+
+
 
 
 
