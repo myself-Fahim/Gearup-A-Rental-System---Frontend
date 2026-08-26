@@ -4,6 +4,7 @@ export type TGear = {
     provider_id : string;
     category_id : string;   
     name : string;
+    image?: string;
     price_per_day : string;
     available_stock : number;
     is_available : boolean;
@@ -11,7 +12,11 @@ export type TGear = {
     updated_At : string;
     category:{
         name : string
-    }
+    };
+    provider?: {
+        name: string;
+        email: string;
+    };
 }
 
 

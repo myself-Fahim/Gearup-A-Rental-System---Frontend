@@ -60,3 +60,20 @@ export const getAllCategory = async () => {
     }
 
 }
+
+export const getGearById = async(gear_id : string) =>{
+
+    try{
+        const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/${gear_id}`, {
+            cache: 'no-store',
+        
+        })
+        const result = await res.json()
+        return result
+
+    }
+    catch(err){
+        console.log(err);
+    }
+
+}

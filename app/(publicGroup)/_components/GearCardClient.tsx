@@ -13,7 +13,13 @@ import {
 } from "@/components/ui/card"
 import { TGear } from '../_types/gear.type';
 import { Boxes, CalendarDays } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 const GearCard = ({gear}: { gear: TGear }) => {
+    const router = useRouter()
+
+    const routeToDetails = () =>{
+          router.push(`/gear/${gear.id}`)
+    }
     
     return (
         <Card className="h-full min-h-[360px] w-full gap-0 rounded-2xl border border-border/80 bg-card py-0 shadow-sm ring-0 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
@@ -45,7 +51,7 @@ const GearCard = ({gear}: { gear: TGear }) => {
                     <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Per day</p>
                     <p className="mt-1 text-lg font-bold text-foreground">${gear.price_per_day}</p>
                 </div>
-                <Button className="rounded-full px-4 shadow-sm shadow-primary/20">View gear</Button>
+                <Button onClick={routeToDetails} className="rounded-full px-4 shadow-sm shadow-primary/20">View gear</Button>
             </CardFooter>
         </Card>
     );

@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import GearDetailsComponent from '../../_components/GearDetailsComponent';
 
-const GearByIdPage = () => {
+const GearByIdPage = ({params} : {params : Promise<{ id: string }>}) => {
+ 
+  
     return (
         <div>
-            Gear By ID
+            <Suspense fallback={<div>loading.....</div>}>
+                  <GearDetailsComponent params= {params}></GearDetailsComponent>
+            </Suspense>
+          
         </div>
     );
 };
