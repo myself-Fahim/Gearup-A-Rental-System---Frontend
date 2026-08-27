@@ -6,11 +6,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { getGearById } from '../_actions/publicAction';
 import Image from 'next/image';
+import { getMe } from '@/service/getMe';
+import GearDetailsPageButton from './GearDetailsPageButton';
 
 const GearDetailsComponent = async({params} : {params : Promise<{ id: string }>}) => {
     const {id} = await params
     const gear = await getGearById(id)
     const gearData = gear.data
+    const user = await getMe()
+    
 
     const formattedDate = (date: string) => new Intl.DateTimeFormat('en', {
         month: 'short', day: 'numeric', year: 'numeric',
@@ -26,10 +30,11 @@ const GearDetailsComponent = async({params} : {params : Promise<{ id: string }>}
                 <div className=" grid lg:grid-cols-[1.05fr_1fr]">
                     <div className="relative border  min-h-80 overflow-hidden bg-secondary sm:min-h-105">
                         <Image
+                        unoptimized
                             src={gearData.image || 'https://placehold.co/900x900/eaf7fb/267fa3?text=Gear+Image'}
                             alt={gearData.name}
                             fill
-                            className="size-full object-cover"
+                            className=" object-cover"
                             
                         />
                     </div>
@@ -81,9 +86,7 @@ const GearDetailsComponent = async({params} : {params : Promise<{ id: string }>}
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <p className="text-xs text-muted-foreground">Last updated {formattedDate(gearData.updated_At)}</p>
-                            <Button asChild disabled={!gearData.is_available} className="h-11 rounded-full px-6 text-sm shadow-lg shadow-primary/20">
-                                <Link href={`/login?redirect=/gear/${id}`}>Rent now</Link>
-                            </Button>
+                          <GearDetailsPageButton gearData = {gearData} user={user}></GearDetailsPageButton>
                         </div>
                     </div>
                 </div>
