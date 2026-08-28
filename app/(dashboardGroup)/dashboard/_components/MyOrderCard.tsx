@@ -3,9 +3,15 @@
 import Link from "next/link";
 import React from "react";
 import { orderDataType } from "../../_types/dashboard.type";
+import { payNow } from "../_actions/dashboardAction";
 
 const MyOrderCard = ({ order }: { order: orderDataType }) => {
-    const isConfirmed = order.status?.toLowerCase() === "confirmed";
+
+    const handlePay = async(id:string) =>{
+        const payResponse = await payNow(id)
+        console.log(payResponse);
+    }
+   
 
     return (
         <article className=" p-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
@@ -15,7 +21,7 @@ const MyOrderCard = ({ order }: { order: orderDataType }) => {
                     <p className="mb-2 text-sm font-medium text-slate-500">Ordered gear</p>
 
                     <span
-                        className={`rounded-full px-3 py-1 text-xs font-semibold capitalize ${isConfirmed
+                        className={`rounded-full px-3 py-1 text-xs font-semibold capitalize ${order.status === 'CONFIRM'
                             ? "bg-emerald-100 text-emerald-700"
                             : "bg-amber-100 text-amber-700"
                             }`}
@@ -41,20 +47,22 @@ const MyOrderCard = ({ order }: { order: orderDataType }) => {
                     View details
                 </Link>
 
-                {isConfirmed ? (
-                    <Link
-                        href={`/dashboard/orders/${order.id}/payment`}
+                {order.status !== 'CONFIRM'? (
+                    <button onClick={()=>handlePay(order.id)}
+                        
                         className="rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-slate-700"
                     >
                         Pay now
-                    </Link>
-                ) : (
+                    </button>
+                ) 
+                :
+                 (
                     <button
                         type="button"
                         disabled
                         className="cursor-not-allowed rounded-lg bg-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-400"
                     >
-                        Pay now
+                        Paid
                     </button>
                 )}
             </div>
