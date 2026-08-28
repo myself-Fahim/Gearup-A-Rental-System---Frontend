@@ -7,7 +7,10 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     return (
         <div>
             <Navbar user={user}></Navbar>
-            {children}
+            <div className='max-w-100 sm:max-w-2xl lg:max-w-5xl mx-auto'>
+                {children}
+            </div>
+
         </div>
     );
 };
