@@ -10,22 +10,22 @@ export const getAllGears = async ({ searchQuery }: {
 
         const params = new URLSearchParams()
 
-        
-        if(searchQuery?.search){
-            params.set('search',String(searchQuery?.search))
+
+        if (searchQuery?.search) {
+            params.set('search', String(searchQuery?.search))
         }
 
-        if(searchQuery?.category){
-            params.set('category',String(searchQuery.category))
+        if (searchQuery?.category) {
+            params.set('category', String(searchQuery.category))
         }
 
-        if(searchQuery?.isAvailable){
-             params.set('isAvailable',String(searchQuery.isAvailable))
+        if (searchQuery?.isAvailable) {
+            params.set('isAvailable', String(searchQuery.isAvailable))
         }
 
         const queryString = params.toString()
 
-         
+
 
         // const search = searchQuery?.search ? `?search=${searchQuery.search}` : ''
         const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/?${queryString}`, {
@@ -57,70 +57,76 @@ export const getAllCategory = async () => {
         const result = await res.json()
         return result
 
-    } catch (err : unknown) {
+    } catch (err: unknown) {
         console.log(err);
     }
 
 }
 
-export const getGearById = async(gear_id : string) =>{
+export const getGearById = async (gear_id: string) => {
 
-    try{
+    try {
         const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/${gear_id}`, {
             cache: 'no-store',
-        
+
         })
         const result = await res.json()
         return result
 
     }
-    catch(err){
+    catch (err) {
         console.log(err);
     }
 
 }
 
 type prevStateType = {
-    success : boolean,
-    message : string
+    success: boolean,
+    message: string
 }
 
 
-export const rentGear = async(prevState : prevStateType,formData : FormData) =>{
+export const rentGear = async (prevState: prevStateType, formData: FormData) => {
 
     const cookieStore = await cookies()
     const accessToken = cookieStore.get('accessToken')?.value
-    
-    if(!accessToken){
-         return {
+
+    if (!accessToken) {
+        return {
             success: false,
             message: 'User not logged in'
         }
     }
 
     const payload = {
-        gear_id : formData.get('gear_id'),
-        startDate : formData.get('startDate'),
-        endDate : formData.get('endDate')
+        gear_id: formData.get('gear_id'),
+        startDate: formData.get('startDate'),
+        endDate: formData.get('endDate')
     }
 
-    const res = await fetch(`${process.env.SERVER_API_URL}/api/orders`,{
-        method:'POST',
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/orders`, {
+        method: 'POST',
         headers: {
-           "Authorization": `Bearer ${accessToken}`,
-           "Content-Type": "application/json"
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
         },
-        body:JSON.stringify(payload)
+        body: JSON.stringify(payload)
 
     })
 
-    const result  = await res.json()
-    console.log(result);
-    
+    const result = await res.json()
+    // if (!result.success && result.message === "Unauthorized access") {
+    //     return {
+    //         success: false,
+    //         message: "You can't rent this gear"
+    //     }
+    // }
+
     return {
-        success : result.success,
-        message : result.message 
+        success: result.success,
+        message: result.message,
+      
     }
 
-    
+
 }
