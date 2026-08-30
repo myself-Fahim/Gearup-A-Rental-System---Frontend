@@ -14,7 +14,7 @@ export type orderDataType = {
 }
 
 
-export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED';
+export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'PICKED_UP' | 'CANCELED' | 'RETURNED';
 
 export type OrderDetails = {
     id: string;

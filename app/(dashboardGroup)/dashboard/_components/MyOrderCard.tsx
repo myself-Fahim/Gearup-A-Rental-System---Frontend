@@ -9,7 +9,7 @@ const MyOrderCard = ({ order }: { order: orderDataType }) => {
 
     const handlePay = async(id:string) =>{
         const payResponse = await payNow(id)
-        console.log(payResponse);
+       
     }
    
 
@@ -23,7 +23,12 @@ const MyOrderCard = ({ order }: { order: orderDataType }) => {
                     <span
                         className={`rounded-full px-3 py-1 text-xs font-semibold capitalize ${order.status === 'CONFIRM'
                             ? "bg-emerald-100 text-emerald-700"
-                            : "bg-amber-100 text-amber-700"
+                            : order.status === 'PENDING'
+                            ? "bg-amber-100 text-amber-700"
+                            : order.status === 'CANCELED'
+                            ? "bg-red-100 text-red-700"
+                            : order.status ===  'PICKED_UP'
+                            && "bg-blue-100 text-blue-700"
                             }`}
                     >
                         {order.status}
@@ -50,12 +55,13 @@ const MyOrderCard = ({ order }: { order: orderDataType }) => {
                     View details
                 </Link>
 
+
                 {order.status !== 'CONFIRM'? (
                     <button onClick={()=>handlePay(order.id)}
                         
                         className="rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-slate-700"
                     >
-                        Pay now
+                        Pay
                     </button>
                 ) 
                 :

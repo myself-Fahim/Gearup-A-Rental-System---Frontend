@@ -20,11 +20,7 @@ export const getMyOrder = async () => {
         headers: {
             "authorization": `Bearer ${accessToken}`,
         },
-        cache: 'no-store',
-        next: {
-            revalidate: 60 * 60 * 24,
-            tags: ['my-order']
-        }
+       
     })
 
     const result = await res.json()
