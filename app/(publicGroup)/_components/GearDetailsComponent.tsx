@@ -51,7 +51,7 @@ const GearDetailsComponent = async({params} : {params : Promise<{ id: string }>}
                         </div>
 
                         <div className="mt-8 flex items-end gap-2 border-b border-border/70 pb-7">
-                            <span className="text-4xl font-bold tracking-tight">${gearData.price_per_day}</span>
+                            <span className="text-4xl font-bold tracking-tight"> &#2547;{gearData.price_per_day}</span>
                             <span className="mb-1 text-sm text-muted-foreground">per day</span>
                         </div>
 

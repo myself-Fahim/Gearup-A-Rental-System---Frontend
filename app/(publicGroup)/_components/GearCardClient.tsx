@@ -49,7 +49,7 @@ const GearCard = ({gear}: { gear: TGear }) => {
             <CardFooter className="flex items-center justify-between border-t border-border/70 px-5 py-4">
                 <div>
                     <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Per day</p>
-                    <p className="mt-1 text-lg font-bold text-foreground">${gear.price_per_day}</p>
+                    <p className="mt-1 text-lg font-bold text-foreground"> &#2547;{gear.price_per_day}</p>
                 </div>
                 <Button onClick={routeToDetails} className="rounded-full px-4 shadow-sm shadow-primary/20">View gear</Button>
             </CardFooter>

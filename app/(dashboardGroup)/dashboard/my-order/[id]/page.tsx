@@ -89,7 +89,7 @@ const MyOrderDetailsPage = async ({ params }: { params: Promise<{ id: string }> 
                                         {order.gear.name}
                                     </h2>
                                     <p className="mt-0.5 text-sm text-muted-foreground">
-                                        ${pricePerDay.toFixed(2)} / day
+                                        &#2547;{pricePerDay.toFixed(2)} / day
                                     </p>
                                     <div className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
                                         <Package className="size-3.5" />
@@ -165,10 +165,10 @@ const MyOrderDetailsPage = async ({ params }: { params: Promise<{ id: string }> 
                             <div className="space-y-3 text-sm">
                                 <div className="flex justify-between">
                                     <span className="text-muted-foreground">
-                                        ${pricePerDay.toFixed(2)} × {days} {days === 1 ? 'day' : 'days'}
+                                        &#2547;{pricePerDay.toFixed(2)} × {days} {days === 1 ? 'day' : 'days'}
                                     </span>
                                     <span className="text-card-foreground">
-                                        ${(pricePerDay * days).toFixed(2)}
+                                        &#2547;{(pricePerDay * days).toFixed(2)}
                                     </span>
                                 </div>
                             </div>
@@ -176,7 +176,7 @@ const MyOrderDetailsPage = async ({ params }: { params: Promise<{ id: string }> 
                             <div className="flex items-baseline justify-between">
                                 <span className="text-sm font-medium text-card-foreground">Total</span>
                                 <span className="text-xl font-semibold text-primary">
-                                    ${total.toFixed(2)}
+                                    &#2547;{total.toFixed(2)}
                                 </span>
                             </div>
                         </div>

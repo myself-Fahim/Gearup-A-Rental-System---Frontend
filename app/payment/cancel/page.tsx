@@ -42,7 +42,7 @@ const PaymentCancelPage = async ({
                     {/* Actions */}
                     <div className="mt-8 flex flex-col gap-2.5">
                         <Link
-                            href={order_id ? `/dashboard/orders/${order_id}` : '/dashboard/orders'}
+                            href={'/dashboard/my-order'}
                             className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
                         >
                             <RotateCcw className="size-4" />

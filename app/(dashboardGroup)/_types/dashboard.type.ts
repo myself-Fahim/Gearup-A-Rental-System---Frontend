@@ -39,3 +39,29 @@ export type OrderDetails = {
     };
 };
 
+export type paymentType = {
+    id: string;
+    order_id: string;
+    status: string;
+    method: string;
+    transaction_id: string;
+    amount: string; 
+    provider: string | null;
+    paidAt: string;
+    order: orderDataType;
+    gear: {
+        id: string;
+        provider_id: string;
+        category_id: string;
+        name: string;
+        price_per_day: string;
+        available_stock: number;
+        is_available: boolean;
+        created_At: string;
+        updated_At: string;
+    }
+};
+
+
+
+
