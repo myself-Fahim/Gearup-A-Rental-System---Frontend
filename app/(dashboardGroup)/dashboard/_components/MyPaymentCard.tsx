@@ -26,7 +26,6 @@ const MyPaymentCard = ({ payment }: { payment: paymentType }) => {
           })
         : '—';
 
-        console.log(payment)
 
     return (
         <tr className="border-b border-border/50 transition-colors hover:bg-muted/50">

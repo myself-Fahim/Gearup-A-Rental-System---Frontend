@@ -4,6 +4,7 @@ export type orderDataType = {
     gear_id: string;
     status: string;
     total_amount: string;
+    isReviewed : boolean;
     startDate: string;
     endDate: string;
     created_At: string;
@@ -61,6 +62,12 @@ export type paymentType = {
         updated_At: string;
     }
 };
+
+
+export type reviewResponse = {
+    success : boolean,
+    message : string
+}
 
 
 

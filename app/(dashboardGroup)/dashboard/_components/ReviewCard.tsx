@@ -1,8 +1,10 @@
 import React from 'react';
 import { orderDataType } from '../../_types/dashboard.type';
 import Link from 'next/link';
+import { ReviewModal } from './ReviewModal';
 
 const ReviewCard = ({ order }: { order: orderDataType }) => {
+
     return (
         <div>
 
@@ -40,18 +42,28 @@ const ReviewCard = ({ order }: { order: orderDataType }) => {
                     </Link>
 
 
+                    {
+                        !order.isReviewed
+                            ?
+                            <ReviewModal order={order}></ReviewModal>
 
-                    <button
+                            :
+                            <button
+                                disabled
+                                className="rounded-lg bg-slate-200 px-5 py-2.5 text-center text-sm font-semibold text-slate-400 transition"
+                            >
+                                Reviewed
+                            </button>
 
-                        className="rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-slate-700"
-                    >
-                        Review
-                    </button>
+                    }
 
                 </div>
-                
 
             </article>
+
+
+
+
 
         </div>
     );
