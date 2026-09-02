@@ -38,6 +38,7 @@ export function ReviewModal({ order }: { order: orderDataType }) {
 
         if (state.success) {
             toast.success(state.message || 'Review create successfully')
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setOpen(false)
             router.push('/dashboard/my-order')
         }
