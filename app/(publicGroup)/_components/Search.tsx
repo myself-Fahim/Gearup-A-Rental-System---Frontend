@@ -16,6 +16,7 @@ const Search = ({startTransition}:{startTransition : React.TransitionStartFuncti
 
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setKey(search)
     }, [search])
 

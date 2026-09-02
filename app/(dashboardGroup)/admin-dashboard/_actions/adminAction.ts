@@ -43,11 +43,13 @@ export const updateUserStatus = async (status: string, id: string) => {
     if(result.success){
         updateTag('users')
     }
-    
+
     return result
 
 }
-export const getAllUser = async () => {
+export const getAllUser = async ({searchQuery} : {
+    searchQuery?: { [key: string]: string | string[] | undefined }
+}) => {
 
     const cookieStore = await cookies()
     const accessToken = cookieStore.get('accessToken')?.value
@@ -59,7 +61,21 @@ export const getAllUser = async () => {
         }
     }
 
-    const res = await fetch(`${process.env.SERVER_API_URL}/api/user`, {
+    const params = new URLSearchParams()
+
+    if(searchQuery?.search){
+        params.set('search',String(searchQuery?.search))
+    }
+    if(searchQuery?.status){
+        params.set('status',String(searchQuery?.status))
+    }
+    if(searchQuery?.role){
+        params.set('role',String(searchQuery?.role))
+    }
+
+    const queryString = params.toString()
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/user?${queryString}`, {
         headers: {
             "authorization": `Bearer ${accessToken}`,
         },

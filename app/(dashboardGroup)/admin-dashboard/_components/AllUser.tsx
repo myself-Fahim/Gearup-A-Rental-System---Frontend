@@ -4,10 +4,16 @@ import { UserType } from '../../_types/dashboard.type';
 import { Card, CardContent } from '@/components/ui/card';
 import { UserTable } from './UserTable';
 
-const AllUser = async() => {
-    const users = await getAllUser()
+const AllUser = async ({ searchParams }: { searchParams?: Promise<{ [key: string]: string | string[] | undefined }> }) => {
+    const searchQuery = await searchParams
+    const users = await getAllUser({searchQuery})
     const usersData = users.data
-   
+
+
+    if(!usersData || usersData.length == 0){
+        return <p className='text-center mt-50 text-gray-500'>No data found</p>
+    }
+  
     return (
           <Card className="mt-8">
             <CardContent>

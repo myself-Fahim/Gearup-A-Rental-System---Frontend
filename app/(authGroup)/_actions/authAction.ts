@@ -1,5 +1,6 @@
 "use server"
 
+import { updateTag } from "next/cache"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
@@ -115,6 +116,10 @@ export const registerAction = async (reg_prev_state: registerPrevState, formData
     })
 
     const result = await res.json()
+
+    if(result.success){
+        updateTag('users')
+    }
     return result
 
 
