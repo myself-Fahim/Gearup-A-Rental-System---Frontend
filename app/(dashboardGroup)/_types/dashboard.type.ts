@@ -4,7 +4,7 @@ export type orderDataType = {
     gear_id: string;
     status: string;
     total_amount: string;
-    isReviewed : boolean;
+    isReviewed: boolean;
     startDate: string;
     endDate: string;
     created_At: string;
@@ -46,7 +46,7 @@ export type paymentType = {
     status: string;
     method: string;
     transaction_id: string;
-    amount: string; 
+    amount: string;
     provider: string | null;
     paidAt: string;
     order: orderDataType;
@@ -65,8 +65,19 @@ export type paymentType = {
 
 
 export type reviewResponse = {
-    success : boolean,
-    message : string
+    success: boolean,
+    message: string
+}
+
+export type UserType = {
+    id: string;
+    name: string;
+    email: string;
+    role: 'PROVIDER' | 'CUSTOMER';
+    status: 'activate' | 'suspend' ;
+    image_url: string | null;
+    created_At: string;
+    updated_At: string;
 }
 
 
