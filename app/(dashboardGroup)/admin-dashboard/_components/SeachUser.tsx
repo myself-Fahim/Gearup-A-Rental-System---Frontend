@@ -5,14 +5,14 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import React, { useEffect, useState } from 'react';
 
-const SeachUser = () => {
+const SeachUser = ({ startTransition }: { startTransition: React.TransitionStartFunction }) => {
     const searchParams = useSearchParams()
     const search = searchParams.get('search') || ''
     const pathname = usePathname()
     const router = useRouter()
     const [key, setKey] = useState(search)
 
- 
+
 
 
 
@@ -31,13 +31,14 @@ const SeachUser = () => {
 
             const queryString = params.toString()
             const url = queryString ? `${pathname}?${queryString}` : `${pathname}`
-            router.replace(url)
-            console.log('url replace');
+            startTransition(() => {
+                router.replace(url)
+            })
         }, 500)
 
-       return ()=> clearTimeout(timer)
+        return () => clearTimeout(timer)
 
-    },[key])
+    }, [key])
 
 
 
