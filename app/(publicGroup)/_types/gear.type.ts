@@ -15,7 +15,7 @@ export type TGear = {
     };
     provider?: {
         name: string;
-        email: string;
+        email?: string;
     };
 }
 

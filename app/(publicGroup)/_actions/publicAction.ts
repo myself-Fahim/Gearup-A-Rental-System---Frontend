@@ -4,7 +4,7 @@ import { cookies } from "next/headers"
 
 export const getAllGears = async ({ searchQuery }: {
     searchQuery?: { [key: string]: string | string[] | undefined }
-}) => {
+}={}) => {
 
     try {
 
@@ -26,8 +26,6 @@ export const getAllGears = async ({ searchQuery }: {
         const queryString = params.toString()
 
 
-
-        // const search = searchQuery?.search ? `?search=${searchQuery.search}` : ''
         const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/?${queryString}`, {
             cache: 'no-store',
         })

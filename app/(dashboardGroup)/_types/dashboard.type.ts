@@ -74,12 +74,29 @@ export type UserType = {
     name: string;
     email: string;
     role: 'PROVIDER' | 'CUSTOMER';
-    status: 'activate' | 'suspend' ;
+    status: 'activate' | 'suspend';
     image_url: string | null;
     created_At: string;
     updated_At: string;
 }
 
+export type RentalType = {
+
+
+    id: string,
+    customer_id: string,
+    gear_id: string,
+    status: string,
+    total_amount: string,
+    isReviewed: boolean,
+    startDate: string,
+    endDate: string,
+    created_At: string,
+    updatedAt: string,
+    customer: { name: string },
+    gear: { name: string }
+
+}
 
 
 

@@ -30,26 +30,26 @@ export const updateUserStatus = async (status: string, id: string) => {
         body: JSON.stringify(payload)
     })
 
-
+    
     const result = await res.json()
-
+    
     if (!result) {
         return {
             success: false,
             message: "Something went wrong"
         }
     }
-
-    if(result.success){
+     if(result.success){
         updateTag('users')
-    }
+     }
 
+   
     return result
 
 }
 export const getAllUser = async ({searchQuery} : {
     searchQuery?: { [key: string]: string | string[] | undefined }
-}) => {
+}={}) => {
 
     const cookieStore = await cookies()
     const accessToken = cookieStore.get('accessToken')?.value
@@ -79,11 +79,64 @@ export const getAllUser = async ({searchQuery} : {
         headers: {
             "authorization": `Bearer ${accessToken}`,
         },
-        cache: "force-cache",
-        next: {
-            revalidate: 60 * 60 * 24,
-            tags: ['users']
+        next:{
+            tags:['users']
         }
+       
+    })
+
+    const result = await res.json()
+    return result
+
+}
+
+
+
+
+
+
+export const getAllOrder = async () => {
+
+    const cookieStore = await cookies()
+    const accessToken = cookieStore.get('accessToken')?.value
+
+    if (!accessToken) {
+        return {
+            success: false,
+            message: 'User not logged in'
+        }
+    }
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/orders`, {
+        headers: {
+            "authorization": `Bearer ${accessToken}`,
+        },
+       
+    })
+
+    const result = await res.json()
+    return result
+
+}
+
+
+export const getAllGears = async () => {
+
+    const cookieStore = await cookies()
+    const accessToken = cookieStore.get('accessToken')?.value
+
+    if (!accessToken) {
+        return {
+            success: false,
+            message: 'User not logged in'
+        }
+    }
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/admin`, {
+        headers: {
+            "authorization": `Bearer ${accessToken}`,
+        },
+       
     })
 
     const result = await res.json()

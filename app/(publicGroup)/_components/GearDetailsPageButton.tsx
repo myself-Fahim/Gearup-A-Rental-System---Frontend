@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import React, { useActionState, useEffect, useRef, useState } from 'react';
 import { TGear } from '../_types/gear.type';
-import { Dialog, DialogClose, DialogContent,  DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Field, FieldGroup } from '@/components/ui/field';
@@ -27,19 +27,19 @@ const GearDetailsPageButton = ({ gearData, user }: { gearData: TGear, user: IUse
     type initialType = {
         success: boolean,
         message: string
-       
+
     }
 
     const initialState: initialType = {
         success: false,
         message: "",
-      
+
     }
     const [state, formAction, isPending] = useActionState(rentGear, initialState)
 
-    
-    
-    
+
+
+
     console.log(state);
     useEffect(() => {
         // Router navigation may restore a previous useActionState result. Only
@@ -48,10 +48,10 @@ const GearDetailsPageButton = ({ gearData, user }: { gearData: TGear, user: IUse
 
         if (state.success) {
             toast.success(state.message || ' Rented successfully')
-            
+
         } else {
             toast.error(state.message || 'Gear renter failed')
-           
+
         }
 
         submittedInCurrentVisit.current = false
@@ -76,7 +76,7 @@ const GearDetailsPageButton = ({ gearData, user }: { gearData: TGear, user: IUse
                         <DialogTrigger asChild >
                             <Button
                                 disabled={!gearData.is_available}
-                                className="h-11 rounded-full px-6 text-sm shadow-lg shadow-primary/20"
+                                className={`h-11 rounded-full px-6 text-sm shadow-lg shadow-primary/20 ${user.data.role ==='ADMIN'? 'hidden' : 'display'}`}
                             >
                                 Rent now
                             </Button>
@@ -171,7 +171,7 @@ const GearDetailsPageButton = ({ gearData, user }: { gearData: TGear, user: IUse
                     </Dialog>
             }
 
-        </div>
+        </div >
     );
 };
 

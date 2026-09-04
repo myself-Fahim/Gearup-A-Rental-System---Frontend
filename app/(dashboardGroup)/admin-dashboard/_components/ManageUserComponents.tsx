@@ -19,7 +19,7 @@ const ManageUserComponents = ({ children }: { children: React.ReactNode }) => {
                             View, manage, and monitor every account on your platform in one place.
                         </p>
                     </div>
-
+ 
                     <SeachUser startTransition = {startTransition}></SeachUser>
                 </div>
                 <FilterUser startTransition = {startTransition}></FilterUser>
