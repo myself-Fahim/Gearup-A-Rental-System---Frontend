@@ -26,44 +26,28 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { IUser } from "../_types/dashboard.type"
+import { adminItem, adminProfile } from "../config/admin.sidebarItem"
+import { userItem, userProfile } from "../config/user.sidebarItem"
 
-const mainRoutes = [
-    {
-        title: "Dashboard",
-        url: "/admin-dashboard",
-        icon: LayoutDashboard,
-    },
-    {
-        title: "Users",
-        url: "/admin-dashboard/manage_user",
-        icon: Users,
-    },
-    {
-        title: "Gears",
-        url: "/admin-dashboard/manage_gears",
-        icon: Package,
-    },
-    {
-        title: "Rentals",
-        url: "/admin-dashboard/rentals",
-        icon: ShoppingCart,
-    },
-]
 
-const accountRoutes = [
-    {
-        title: "Profile",
-        url: "/admin-dashboard/profile",
-        icon: User,
-    },
- 
-]
 
-export function AppSidebar() {
+
+
+export function AppSidebar({ user }: { user: IUser }) {
+   
+    let mainRoutes = userItem
+    let accountRoutes = userProfile 
+
+    if(user.data.role === 'ADMIN'){
+        mainRoutes = adminItem
+        accountRoutes = adminProfile
+    }
+
     const pathname = usePathname()
 
     return (
-        <Sidebar collapsible="offcanvas"  className="top-18  lg:static min-h-screen">
+        <Sidebar collapsible="offcanvas" className="top-18  lg:static min-h-screen">
             {/* Header */}
             <SidebarHeader>
                 <div className="flex items-center gap-3 px-2 py-3">

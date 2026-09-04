@@ -13,11 +13,6 @@ const SeachUser = ({ startTransition }: { startTransition: React.TransitionStart
     const [key, setKey] = useState(search)
 
 
-
-
-
-
-
     useEffect(() => {
 
         const params = new URLSearchParams(searchParams.toString())
@@ -30,10 +25,15 @@ const SeachUser = ({ startTransition }: { startTransition: React.TransitionStart
             }
 
             const queryString = params.toString()
-            const url = queryString ? `${pathname}?${queryString}` : `${pathname}`
-            startTransition(() => {
-                router.replace(url)
-            })
+
+            const currentUrl = `${pathname}${searchParams.size ? `?${searchParams.toString()}`:''}`
+            const nextUrl = queryString ? `${pathname}?${queryString}` : `${pathname}`
+
+            if (nextUrl !== currentUrl) {
+                startTransition(() => {
+                    router.replace(nextUrl)
+                })
+            }
         }, 500)
 
         return () => clearTimeout(timer)

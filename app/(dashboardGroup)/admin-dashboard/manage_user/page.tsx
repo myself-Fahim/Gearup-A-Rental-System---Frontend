@@ -7,7 +7,7 @@ import ManageUserComponents from "../_components/ManageUserComponents";
 
 
 const ManageUserPage = ({ searchParams }: { searchParams?: Promise<{ [key: string]: string | string[] | undefined }> }) => {
-    
+
 
 
     return (
@@ -19,6 +19,8 @@ const ManageUserPage = ({ searchParams }: { searchParams?: Promise<{ [key: strin
                         <AllUser searchParams={searchParams}></AllUser>
                     </Suspense>
                 </ManageUserComponents>
+
+
 
 
             </div>

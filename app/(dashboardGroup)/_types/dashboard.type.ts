@@ -100,3 +100,19 @@ export type RentalType = {
 
 
 
+export type IUser = {
+    success: boolean,
+    message: string,
+    data: {
+        id: string,
+        name: string,
+        email: string,
+        role: string,
+        status: string,
+        image_url: string | null,
+        created_At: string,
+        updated_At: string
+    }
+}
+
+

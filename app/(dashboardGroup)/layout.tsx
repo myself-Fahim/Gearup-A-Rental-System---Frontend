@@ -18,11 +18,8 @@ const DashboardLayout = async ({
     return (
         <SidebarProvider>
             <div className="w-full min-h-screen">
-
-                <Navbar user={user} />
-
                 <div className="flex">
-                    <AppSidebar />
+                    <AppSidebar user={user}/>
 
                     <main className="flex-1 min-w-0">
                         <SidebarTrigger className="lg:hidden" />
@@ -31,7 +28,6 @@ const DashboardLayout = async ({
                         </div>
                     </main>
                 </div>
-
             </div>
         </SidebarProvider>
     )

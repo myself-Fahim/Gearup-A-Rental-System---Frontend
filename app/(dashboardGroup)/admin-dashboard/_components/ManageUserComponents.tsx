@@ -25,7 +25,9 @@ const ManageUserComponents = ({ children }: { children: React.ReactNode }) => {
                 <FilterUser startTransition = {startTransition}></FilterUser>
             </div>
 
-            {isPending ? <SkeletonLoader></SkeletonLoader> : children} 
+            {isPending && <SkeletonLoader></SkeletonLoader>}
+
+            {children} 
 
         </div>
 
