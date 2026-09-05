@@ -4,7 +4,7 @@ import { cookies } from "next/headers"
 
 export const getAllGears = async ({ searchQuery }: {
     searchQuery?: { [key: string]: string | string[] | undefined }
-}={}) => {
+} = {}) => {
 
     try {
 
@@ -27,7 +27,11 @@ export const getAllGears = async ({ searchQuery }: {
 
 
         const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/?${queryString}`, {
-            cache: 'no-store',
+            cache: 'force-cache',
+            next: {
+                revalidate: 60 * 60 * 24 * 2,
+                tags:['allgears']
+            }
         })
         const result = await res.json()
 
@@ -123,7 +127,7 @@ export const rentGear = async (prevState: prevStateType, formData: FormData) => 
     return {
         success: result.success,
         message: result.message,
-      
+
     }
 
 

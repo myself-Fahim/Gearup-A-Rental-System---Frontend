@@ -47,7 +47,7 @@ export function AppSidebar({ user }: { user: IUser }) {
     const pathname = usePathname()
 
     return (
-        <Sidebar collapsible="offcanvas" className="top-18  lg:static min-h-screen">
+        <Sidebar collapsible="offcanvas" className="min-h-screen">
             {/* Header */}
             <SidebarHeader>
                 <div className="flex items-center gap-3 px-2 py-3">

@@ -14,7 +14,7 @@ const AllRental = async () => {
             <Card className="mt-8">
                 <CardContent>
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left">
+                        <table className="w-full min-w-170 text-left">
                             <thead>
                                 <tr className="border-b border-border">
                                     <th className="pb-3 text-xs font-medium text-muted-foreground uppercase tracking-wider">Customer</th>
