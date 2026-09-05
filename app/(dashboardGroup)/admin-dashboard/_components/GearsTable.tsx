@@ -51,8 +51,8 @@ const GearsTable = ({ gear }: { gear: TGear }) => {
                     className="
         inline-flex items-center gap-1.5
         rounded-md border border-border
-        bg-primary/80 text-white px-3 py-1.5
-        text-xs font-medium text-foreground
+        bg-primary/80 text-foreground px-3 py-1.5
+        text-xs font-medium 
         shadow-sm
         transition-all
         hover:border-primary/40

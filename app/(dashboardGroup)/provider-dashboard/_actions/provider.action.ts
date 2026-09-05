@@ -75,3 +75,47 @@ export const createGear = async (prevState:{success:boolean,message:string},form
     return result
 
 }
+export const updateGear = async (prevState:{success:boolean,message:string},formData: FormData) => {
+    const cookieStore = await cookies()
+    const accessToken = cookieStore.get('accessToken')?.value
+
+    if (!accessToken) {
+        return {
+            success: false,
+            message: 'User not logged in'
+        }
+    }
+
+    const is_available = formData.get('status') === 'true'
+    const price_per_day = Number(formData.get('price'))
+    const available_stock = Number(formData.get('stock'))
+    const gear_id = formData.get('id')
+  
+
+    const payload = {
+        is_available,
+        price_per_day,
+        available_stock
+    }
+
+   
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/${gear_id}`, {
+        method:"PATCH",
+        headers: {
+            "authorization": `Bearer ${accessToken}`,
+            "content-type" : "application/json"
+        },
+        body:JSON.stringify(payload),
+    })
+
+    const result = await res.json()
+
+    if(result.success){
+        updateTag('provider-gears')
+        updateTag('allgears')
+    }
+
+  
+    return result
+
+}
