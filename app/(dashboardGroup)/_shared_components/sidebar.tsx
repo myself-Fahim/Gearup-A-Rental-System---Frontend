@@ -29,6 +29,7 @@ import {
 import { IUser } from "../_types/dashboard.type"
 import { adminItem, adminProfile } from "../config/admin.sidebarItem"
 import { userItem, userProfile } from "../config/user.sidebarItem"
+import { providerItem, providerProfile } from "../config/provider.sidebarItem"
 
 
 
@@ -42,6 +43,10 @@ export function AppSidebar({ user }: { user: IUser }) {
     if(user.data.role === 'ADMIN'){
         mainRoutes = adminItem
         accountRoutes = adminProfile
+    }
+    else if(user.data.role === 'PROVIDER'){
+        mainRoutes = providerItem
+        accountRoutes = providerProfile
     }
 
     const pathname = usePathname()
