@@ -1,6 +1,6 @@
-
+"use client"
 import { TGear } from '@/app/(publicGroup)/_types/gear.type';
-import { Edit, Trash2 } from 'lucide-react';
+import {  Trash2 } from 'lucide-react';
 import React from 'react';
 import {
     Tooltip,
@@ -9,8 +9,22 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip';
 import EditGearModal from './EditGearModal';
+import { deleteGear } from '../_actions/provider.action';
+import { toast } from 'sonner';
 
 const InventoryTable = ({ gear }: { gear: TGear }) => {
+
+    const handleDelete =async (id:string) =>{
+       const result = await deleteGear(id);
+       if(result.success){
+        toast.success(result.message || 'Gear deleted successfully')
+       }
+       else{
+        toast.error(result.message || 'Failed to delete gear')
+       }
+    }
+
+
     return (
         <tr className="border-b border-border/50 transition-colors hover:bg-muted/40">
 
@@ -72,7 +86,7 @@ const InventoryTable = ({ gear }: { gear: TGear }) => {
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <span>
-                                    <button
+                                    <button onClick={()=>handleDelete(gear.id)}
                                         disabled={gear.is_available}
                                         type="button"
                                         className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-red-500/20 bg-red-500/5 text-red-500 transition-colors hover:bg-red-500/10 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-40"

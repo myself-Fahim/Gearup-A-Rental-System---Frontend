@@ -76,7 +76,7 @@ const GearDetailsPageButton = ({ gearData, user }: { gearData: TGear, user: IUse
                         <DialogTrigger asChild >
                             <Button
                                 disabled={!gearData.is_available}
-                                className={`h-11 rounded-full px-6 text-sm shadow-lg shadow-primary/20 ${user.data.role ==='ADMIN'? 'hidden' : 'display'}`}
+                                className={`h-11 rounded-full px-6 text-sm shadow-lg shadow-primary/20 ${user.data.role ==='ADMIN' || user.data.role === 'PROVIDER'  ? 'hidden' : 'display'}`}
                             >
                                 Rent now
                             </Button>

@@ -18,7 +18,6 @@ export const getMyGears = async () => {
         headers: {
             "authorization": `Bearer ${accessToken}`,
         },
-        cache: "force-cache",
         next: {
             revalidate: 60 * 60 * 24,
             tags: ['provider-gears']
@@ -106,6 +105,36 @@ export const updateGear = async (prevState:{success:boolean,message:string},form
             "content-type" : "application/json"
         },
         body:JSON.stringify(payload),
+    })
+
+    const result = await res.json()
+
+    if(result.success){
+        updateTag('provider-gears')
+        updateTag('allgears')
+    }
+
+  
+    return result
+
+}
+export const deleteGear = async (id:string) => {
+    const cookieStore = await cookies()
+    const accessToken = cookieStore.get('accessToken')?.value
+
+    if (!accessToken) {
+        return {
+            success: false,
+            message: 'User not logged in'
+        }
+    }
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/${id}`, {
+        method:"DELETE",
+        headers: {
+            "authorization": `Bearer ${accessToken}`,
+            "content-type" : "application/json"
+        },
     })
 
     const result = await res.json()
