@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { Suspense } from "react";
+import ProfileLoad from "../../_shared_components/ProfileLoad";
+import SkeletonLoader from "@/app/(publicGroup)/_components/Skeleton";
 
-const ProviderProfile = () => {
+
+
+const ProviderProfilePage = async () => {
     return (
-        <div>
-            Provider Profile
+        <div className="min-h-screen bg-muted/30 p-4 sm:p-6 lg:p-8">
+            <Suspense fallback={<SkeletonLoader></SkeletonLoader>}>
+                <ProfileLoad></ProfileLoad>
+            </Suspense>
         </div>
     );
 };
 
-export default ProviderProfile;
+export default ProviderProfilePage;
