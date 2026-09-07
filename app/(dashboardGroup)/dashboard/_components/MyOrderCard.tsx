@@ -56,7 +56,7 @@ const MyOrderCard = ({ order }: { order: orderDataType }) => {
                 </Link>
 
 
-                {order.status !== 'CONFIRM'? (
+                {order.status === 'PENDING'? (
                     <button onClick={()=>handlePay(order.id)}
                         
                         className="rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-slate-700"

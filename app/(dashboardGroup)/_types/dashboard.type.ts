@@ -9,10 +9,13 @@ export type orderDataType = {
     endDate: string;
     created_At: string;
     updatedAt: string;
-    gear: {
+    gear?: {
         name: string;
     };
-}
+    customer?:{
+        name:string
+    }
+};
 
 
 export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'PICKED_UP' | 'CANCELED' | 'RETURNED';

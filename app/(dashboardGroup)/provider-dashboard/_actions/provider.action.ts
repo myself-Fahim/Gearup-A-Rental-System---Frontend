@@ -1,6 +1,6 @@
 "use server"
 
-import { updateTag } from "next/cache"
+import { revalidatePath, updateTag } from "next/cache"
 import { cookies } from "next/headers"
 
 export const getMyGears = async () => {
@@ -28,6 +28,68 @@ export const getMyGears = async () => {
     return result
 
 }
+
+
+
+
+export const getMyProductOrders = async () => {
+    const cookieStore = await cookies()
+    const accessToken = cookieStore.get('accessToken')?.value
+
+    if (!accessToken) {
+        return {
+            success: false,
+            message: 'User not logged in'
+        }
+    }
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/orders/provider/orders`, {
+        headers: {
+            "authorization": `Bearer ${accessToken}`,
+        },
+    })
+
+    const result = await res.json()
+    return result
+
+}
+
+
+
+export const updateMyProductStatus = async (status_value:string,id:string) => {
+    const cookieStore = await cookies()
+    const accessToken = cookieStore.get('accessToken')?.value
+
+    if (!accessToken) {
+        return {
+            success: false,
+            message: 'User not logged in'
+        }
+    }
+
+    const payload = {
+        status : status_value.toUpperCase()
+    }
+
+    const res = await fetch(`${process.env.SERVER_API_URL}/api/orders/provider/orders/${id}`, {
+        method:"PATCH",
+        headers: {
+            "authorization": `Bearer ${accessToken}`,
+            "content-type" : "application/json"
+        },
+        body:JSON.stringify(payload)
+      
+    })
+
+    const result = await res.json()
+    if(result.success){
+        revalidatePath('/provider-dashboard/manage_order')
+    }
+    return result
+
+}
+
+
 
 export const createGear = async (prevState:{success:boolean,message:string},formData: FormData) => {
     const cookieStore = await cookies()
@@ -74,6 +136,8 @@ export const createGear = async (prevState:{success:boolean,message:string},form
     return result
 
 }
+
+
 export const updateGear = async (prevState:{success:boolean,message:string},formData: FormData) => {
     const cookieStore = await cookies()
     const accessToken = cookieStore.get('accessToken')?.value
@@ -118,6 +182,8 @@ export const updateGear = async (prevState:{success:boolean,message:string},form
     return result
 
 }
+
+
 export const deleteGear = async (id:string) => {
     const cookieStore = await cookies()
     const accessToken = cookieStore.get('accessToken')?.value

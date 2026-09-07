@@ -7,6 +7,10 @@ const MyOrder = async()=> {
     const orders = await getMyOrder() 
     const ordersData = orders.data
     const orderToShow = ordersData.filter((order: orderDataType) => order.status !== 'RETURNED')
+
+    if(!orderToShow || orderToShow.length === 0){
+        return <p className='text-gray-500 text-center mt-30'>No order to show</p>
+    }
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
            {

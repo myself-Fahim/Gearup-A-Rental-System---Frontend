@@ -44,11 +44,7 @@ export const getMyOrderDetails = async (id: string) => {
         headers: {
             "authorization": `Bearer ${accessToken}`,
         },
-        cache: 'force-cache',
-        next: {
-            revalidate: 60 * 60 * 24,
-            tags: ['my-order-details']
-        }
+       
     })
 
     const result = await res.json()

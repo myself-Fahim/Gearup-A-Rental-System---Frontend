@@ -8,6 +8,10 @@ const MyPayment = async () => {
     const payments = await getMyPayments();
     const paymentsData = payments.data.payments;
 
+      if(!paymentsData || paymentsData.length === 0){
+        return <p className='text-gray-500 text-center mt-30'>No payment yet</p>
+    }
+
     return (
          <Card className="mt-8">
             <CardContent>
