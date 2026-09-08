@@ -76,7 +76,7 @@ export const loginAction = async (prev_state: prevState, formData: FormData) => 
         }
 
         else {
-            redirect('/dashboard')
+            redirect('/dashboard/my-order')
         }
     }
 

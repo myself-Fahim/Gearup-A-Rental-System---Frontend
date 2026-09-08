@@ -36,7 +36,7 @@ const Hero = () => {
                     }}
                 />
 
-                <div className="absolute inset-0 bg-black/55" />
+                <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/25 to-black/10" />
             </div>
 

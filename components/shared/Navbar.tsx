@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Moon, Sun, User, Settings, LogOut, Menu, Cog } from "lucide-react";
+import { Moon, Sun, User, Settings, LogOut, Menu, Cog, LayoutDashboard } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -35,7 +35,7 @@ const routes = [
 // 2. Items shown in the user dropdown menu — edit this array to add/remove items
 const dropdownItems = [
     { label: "Profile", href: "", icon: User },
-    { label: "Settings", href: "/settings", icon: Settings },
+    { label: "dashboard", href: "", icon: LayoutDashboard },
 ];
 
 
@@ -216,13 +216,22 @@ export default function Navbar({ user }: userProps) {
                                                         {item.label}
                                                     </Link>
                                             :
-                                            <Link
-                                                    href={item.href}
-                                                    className="flex cursor-pointer items-center gap-2"
-                                                >
-                                                    <item.icon className="h-4 w-4" />
-                                                    {item.label}
-                                            </Link>
+                                                 user.data.role === 'ADMIN' || user.data.role === 'PROVIDER' ?
+                                                    <Link
+                                                        href={`/${user.data.role.toLowerCase()}-dashboard`}
+                                                        className="flex cursor-pointer items-center gap-2"
+                                                    >
+                                                        <item.icon className="h-4 w-4" />
+                                                        {item.label}
+                                                    </Link>
+                                                     : 
+                                                     <Link
+                                                        href={`/dashboard/my-order`}
+                                                        className="flex cursor-pointer items-center gap-2"
+                                                    >
+                                                        <item.icon className="h-4 w-4" />
+                                                        {item.label}
+                                                    </Link>
                                         }
 
                                     </DropdownMenuItem>

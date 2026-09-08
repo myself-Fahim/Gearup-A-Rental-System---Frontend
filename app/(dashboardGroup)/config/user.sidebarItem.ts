@@ -1,11 +1,11 @@
-import { HandCoins, LayoutDashboard, ShoppingCart, User, UserStar } from "lucide-react";
+import { HandCoins, ShoppingCart, User, UserStar } from "lucide-react";
 
 export const userItem = [
-     {
-            title: "Dashboard",
-            url: "/dashboard",
-            icon: LayoutDashboard,
-        },
+    //  {
+    //         title: "Dashboard",
+    //         url: "/dashboard",
+    //         icon: LayoutDashboard,
+    //     },
         {
             title: "My orders",
             url: "/dashboard/my-order",

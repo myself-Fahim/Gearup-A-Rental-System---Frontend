@@ -69,7 +69,7 @@ const PaymentSuccessPage = async ({
                             </Link>
                         )}
                         <Link
-                            href="/dashboard"
+                            href="/dashboard/my-order"
                             className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-card-foreground transition-colors hover:bg-accent"
                         >
                             Back to dashboard

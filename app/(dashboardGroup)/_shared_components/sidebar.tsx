@@ -1,10 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import {
-    LayoutDashboard,
     Users,
     Package,
     ShoppingCart,
@@ -12,6 +11,7 @@ import {
     User,
     LogOut,
     Cog,
+    Home,
 } from "lucide-react"
 
 import {
@@ -26,33 +26,49 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
+
 import { IUser } from "../_types/dashboard.type"
 import { adminItem, adminProfile } from "../config/admin.sidebarItem"
 import { userItem, userProfile } from "../config/user.sidebarItem"
 import { providerItem, providerProfile } from "../config/provider.sidebarItem"
-
-
-
+import { logout } from "@/service/logout"
+import { toast } from "sonner"
 
 
 export function AppSidebar({ user }: { user: IUser }) {
-   
-    let mainRoutes = userItem
-    let accountRoutes = userProfile 
 
-    if(user.data.role === 'ADMIN'){
+    let mainRoutes = userItem
+    let accountRoutes = userProfile
+
+    if (user.data.role === "ADMIN") {
         mainRoutes = adminItem
         accountRoutes = adminProfile
     }
-    else if(user.data.role === 'PROVIDER'){
+    else if (user.data.role === "PROVIDER") {
         mainRoutes = providerItem
         accountRoutes = providerProfile
     }
 
     const pathname = usePathname()
+    const router = useRouter()
+
+    const handleLogout = async () => {
+
+        try {
+            const result = await logout()
+            toast.success('Logout successfull')
+            router.push('/login')
+        }
+        catch (err) {
+            toast.error('Logout failed')
+        }
+
+    }
+
 
     return (
         <Sidebar collapsible="offcanvas" className="min-h-screen">
+
             {/* Header */}
             <SidebarHeader>
                 <div className="flex items-center gap-3 px-2 py-3">
@@ -63,17 +79,20 @@ export function AppSidebar({ user }: { user: IUser }) {
                     <div>
                         <h2 className="font-semibold">GearUp</h2>
                         <p className="text-xs text-muted-foreground">
-                            Admin Dashboard
+                            Dashboard
                         </p>
                     </div>
                 </div>
             </SidebarHeader>
 
 
-
+            {/* Content */}
             <SidebarContent>
+
+                {/* Main Routes */}
                 <SidebarGroup>
                     <SidebarGroupLabel>Main</SidebarGroupLabel>
+
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {mainRoutes.map((route) => {
@@ -98,10 +117,10 @@ export function AppSidebar({ user }: { user: IUser }) {
                 </SidebarGroup>
 
 
-
-
+                {/* Account Routes */}
                 <SidebarGroup>
                     <SidebarGroupLabel>Account</SidebarGroupLabel>
+
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {accountRoutes.map((route) => {
@@ -131,12 +150,26 @@ export function AppSidebar({ user }: { user: IUser }) {
             {/* Footer */}
             <SidebarFooter>
                 <SidebarMenu>
+
+                    {/* Go To Home */}
                     <SidebarMenuItem>
-                        <SidebarMenuButton>
+                        <SidebarMenuButton asChild>
+                            <Link href="/">
+                                <Home />
+                                <span>Go to Home</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+
+
+                    {/* Logout */}
+                    <SidebarMenuItem>
+                        <SidebarMenuButton onClick={handleLogout}>
                             <LogOut />
                             <span>Logout</span>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
+
                 </SidebarMenu>
             </SidebarFooter>
 

@@ -9,7 +9,7 @@ const LoadLatestGear = async () => {
 
     if (allGears.length === 0 || !allGears) {
         return (
-            <div className="mt-8 flex min-h-[280px] flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/20 px-6 text-center">
+            <div className="mt-8 flex min-h-70 flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/20 px-6 text-center">
                 
                 <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                     <Compass className="h-7 w-7 text-primary" />

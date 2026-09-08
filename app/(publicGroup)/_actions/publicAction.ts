@@ -28,7 +28,7 @@ export const getAllGears = async ({ searchQuery }: {
         const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/?${queryString}`, {
             cache: 'force-cache',
             next: {
-                revalidate: 60 * 60 * 24 * 2,
+                revalidate: 60 * 60 * 24 ,
                 tags:['allgears']
             }
         })
@@ -64,18 +64,16 @@ export const getAllCategory = async () => {
 
 export const getGearById = async (gear_id: string) => {
 
-    try {
+   
         const res = await fetch(`${process.env.SERVER_API_URL}/api/gear/${gear_id}`, {
             cache: 'no-store',
 
         })
         const result = await res.json()
+        console.log(result);
         return result
-
-    }
-    catch (err) {
-        console.log(err);
-    }
+    
+    
 
 }
 

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft, CalendarDays, CheckCircle2, CircleAlert, Mail, Package, Tag, UserRound } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+
 import { getGearById } from '../_actions/publicAction';
 import Image from 'next/image';
 import { getMe } from '@/service/getMe';
@@ -19,6 +19,8 @@ const GearDetailsComponent = async({params} : {params : Promise<{ id: string }>}
         month: 'short', day: 'numeric', year: 'numeric',
     }).format(new Date(date))
 
+   
+   
 
 
     
