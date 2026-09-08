@@ -6,8 +6,7 @@ export const getAllGears = async ({ searchQuery }: {
     searchQuery?: { [key: string]: string | string[] | undefined }
 } = {}) => {
 
-    try {
-
+    
         const params = new URLSearchParams()
 
 
@@ -37,10 +36,8 @@ export const getAllGears = async ({ searchQuery }: {
 
         return result.data
 
-    }
-    catch (err: unknown) {
-        console.log(err);
-    }
+    
+
 }
 
 export const getAllCategory = async () => {

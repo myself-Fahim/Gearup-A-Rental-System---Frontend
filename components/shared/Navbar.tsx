@@ -28,8 +28,6 @@ import { toast } from "sonner";
 const routes = [
     { label: "Home", href: "/" },
     { label: "Gears", href: "/gear" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
 ];
 
 

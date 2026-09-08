@@ -12,7 +12,7 @@ const GearList = async ({ searchParams }: {
 
 
     if (!allGearData || allGearData.length === 0 )
-        return <p className='text-center text-gray-500 mt-20 bg-white'>No data found</p>
+        return <p className='text-center text-gray-500 mt-20'>No data found</p>
 
     return (
         <div className='mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>

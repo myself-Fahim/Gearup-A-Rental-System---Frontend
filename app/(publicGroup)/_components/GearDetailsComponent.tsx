@@ -15,10 +15,16 @@ const GearDetailsComponent = async({params} : {params : Promise<{ id: string }>}
     const gearData = gear.data
     const user = await getMe()
     
-
     const formattedDate = (date: string) => new Intl.DateTimeFormat('en', {
         month: 'short', day: 'numeric', year: 'numeric',
     }).format(new Date(date))
+
+
+
+    
+
+
+
 
     return (
         <div className="py-8 sm:py-12">
