@@ -31,7 +31,7 @@ const MyPaymentCard = ({ payment }: { payment: paymentType }) => {
         <tr className="border-b border-border/50 transition-colors hover:bg-muted/50">
             <td className="py-4 pr-4">
                 <p className="text-sm font-medium text-foreground">
-                    {payment.order?.gear.name ?? 'Unknown Gear'}
+                    {payment.order?.gear?.name ?? 'Unknown Gear'}
                 </p>
             </td>
 

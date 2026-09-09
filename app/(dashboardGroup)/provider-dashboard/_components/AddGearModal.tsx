@@ -74,13 +74,13 @@ export function AddGearModal({ categoriesData }: { categoriesData: ICategory[] }
                     <FieldGroup>
                         <Field>
                             <Label htmlFor="name">Gear Name</Label>
-                            <Input className="bg-primary/20" id="name" name="name" placeholder="Enter name" />
+                            <Input className="bg-primary/20" id="name" name="name" placeholder="Enter name" required />
                         </Field>
 
 
                         <Field>
                             <Label htmlFor="category">Category</Label>
-                            <Select name="category">
+                            <Select name="category" required>
                                 <SelectTrigger className="bg-primary/20 w-full" id="category">
                                     <SelectValue placeholder="Select category" />
                                 </SelectTrigger>
@@ -97,15 +97,15 @@ export function AddGearModal({ categoriesData }: { categoriesData: ICategory[] }
 
                         <Field>
                             <Label htmlFor="price">Price Per Day</Label>
-                            <Input className="bg-primary/20" id="price" name="price" placeholder="Enter price" />
+                            <Input className="bg-primary/20" id="price" name="price" placeholder="Enter price" required />
                         </Field>
                         <Field>
                             <Label htmlFor="image">Gear Image</Label>
-                            <Input className="bg-primary/20" id="image" name="image" placeholder="Enter url" />
+                            <Input className="bg-primary/20" id="image" name="image" placeholder="Enter url" required />
                         </Field>
                         <Field>
                             <Label htmlFor="stock">Available Stock</Label>
-                            <Input className="bg-primary/20" id="stock" name="stock" placeholder="Enter stock" />
+                            <Input className="bg-primary/20" id="stock" name="stock" placeholder="Enter stock" required/>
                         </Field>
 
                     </FieldGroup>

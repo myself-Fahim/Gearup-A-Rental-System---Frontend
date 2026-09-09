@@ -22,7 +22,7 @@ const GearsTable = ({ gear }: { gear: TGear }) => {
 
             <td className="py-4 pr-4">
                 <p className="text-sm">
-                    {gear.category.name}
+                    {gear.category?.name}
                 </p>
             </td>
 

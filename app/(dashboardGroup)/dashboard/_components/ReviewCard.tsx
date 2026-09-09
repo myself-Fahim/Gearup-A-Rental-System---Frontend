@@ -23,7 +23,7 @@ const ReviewCard = ({ order }: { order: orderDataType }) => {
 
 
                     <h3 className="text-xl font-bold text-slate-900 mt-4">
-                        {order.gear.name}
+                        {order.gear?.name ?? 'Unknown gear'}
                     </h3>
                     <p className="mt-1 text-sm font-semibold text-slate-600">
                         &#2547;{parseFloat(order.total_amount).toLocaleString()}
