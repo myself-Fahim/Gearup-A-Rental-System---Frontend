@@ -24,7 +24,7 @@ const Hero = () => {
         router.push('/register')
     }
     return (
-        <section className="relative mt-10 overflow-hidden  bg-muted/30">
+        <section className="relative mt-10 overflow-hidden rounded-md  bg-muted/30">
 
             {/* Background */}
             <div className="absolute inset-0">

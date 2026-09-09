@@ -20,14 +20,6 @@ const GearDetailsComponent = async({params} : {params : Promise<{ id: string }>}
     }).format(new Date(date))
 
    
-   
-
-
-    
-
-
-
-
     return (
         <div className="py-8 sm:py-12">
             <Link href="/gear" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
