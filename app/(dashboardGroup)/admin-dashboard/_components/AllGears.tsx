@@ -7,6 +7,9 @@ import GearsTable from './GearsTable';
 const AllGears = async () => {
     const gears = await getAllGears()
     const gearsData = gears.data
+     if(!gearsData || gearsData.length == 0){
+        return <p className='text-gray-500 text-center mt-30'>No gear to show</p>
+    }
 
     return (
         <div>

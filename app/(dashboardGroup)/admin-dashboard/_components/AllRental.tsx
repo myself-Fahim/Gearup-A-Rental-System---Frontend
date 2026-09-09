@@ -8,6 +8,10 @@ const AllRental = async () => {
     const rentals = await getAllOrder()
     const rentalData = rentals.data
 
+     if(!rentalData || rentalData.length == 0){
+        return <p className='text-gray-500 text-center mt-30'>No rental to show</p>
+    }
+
 
     return (
         <div>

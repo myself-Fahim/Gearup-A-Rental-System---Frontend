@@ -8,7 +8,7 @@ const MyOrder = async()=> {
     const ordersData = orders.data
     const orderToShow = ordersData.filter((order: orderDataType) => order.status !== 'RETURNED')
 
-    if(!orderToShow || orderToShow.length === 0){
+    if(!ordersData || ordersData.length === 0){
         return <p className='text-gray-500 text-center mt-30'>No order to show</p>
     }
     return (

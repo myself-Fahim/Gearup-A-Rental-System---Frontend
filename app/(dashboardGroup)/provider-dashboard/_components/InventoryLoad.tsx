@@ -7,6 +7,10 @@ import { TGear } from '@/app/(publicGroup)/_types/gear.type';
 const InventoryLoad = async () => {
     const myGears = await getMyGears()
     const myGearsData = myGears.data
+
+    if(!myGearsData || myGearsData.length == 0){
+        return <p className='text-gray-500 text-center mt-30'>No gear to show</p>
+    }
     
     return (
         <div>

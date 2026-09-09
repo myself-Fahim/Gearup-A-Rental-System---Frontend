@@ -11,7 +11,7 @@ const AllUser = async ({ searchParams }: { searchParams?: Promise<{ [key: string
 
 
     if(!usersData || usersData.length == 0){
-        return <p className='text-center mt-50 text-gray-500'>No data found</p>
+        return <p className='text-center mt-50 text-gray-500'>No user to show</p>
     }
   
     return (

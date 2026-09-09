@@ -24,10 +24,11 @@ const ProviderDashboard = async() => {
 
     const myGears = await getMyGears()
     const myOrders =await getMyProductOrders()
-
     const total_gears = myGears.data
-    const active_rentals = myOrders.data.filter((order: orderDataType)  => order.status === 'CONFIRM' || order.status === 'PICKED_UP')
-    const pending_orders = myOrders.data.filter((order: orderDataType)  => order.status === 'PENDING')
+    const total_orders = myOrders.data
+
+    const active_rentals = total_orders ? total_orders.filter((order: orderDataType)  => order.status === 'CONFIRM' || order.status === 'PICKED_UP'):[]
+    const pending_orders = total_orders ? total_orders.filter((order: orderDataType)  => order.status === 'PENDING'):[]
 
  
    

@@ -9,7 +9,7 @@ const Review = async() => {
     const orderToShow = ordersData.filter((order: orderDataType) => order.status === 'RETURNED')
 
 
-    if(!orderToShow || orderToShow.length == 0){
+    if(!ordersData || ordersData.length == 0){
         return <p className='text-center text-gray-500 mt-30'>No returned gear</p>
     }
     return (
