@@ -24,12 +24,17 @@ const ProviderDashboard = async() => {
 
     const myGears = await getMyGears()
     const myOrders =await getMyProductOrders()
-    const total_gears = myGears.data
+
+
+
+    const total_gears = myGears.success ? myGears.data : []
     const total_orders = myOrders.data
 
+    
     const active_rentals = total_orders ? total_orders.filter((order: orderDataType)  => order.status === 'CONFIRM' || order.status === 'PICKED_UP'):[]
     const pending_orders = total_orders ? total_orders.filter((order: orderDataType)  => order.status === 'PENDING'):[]
-
+    
+  
  
    
  
@@ -65,7 +70,7 @@ const ProviderDashboard = async() => {
 
                     <CardContent>
                         <div className="text-3xl font-bold">
-                           {total_gears.length}
+                         {total_gears.length}
                         </div>
 
                         <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">

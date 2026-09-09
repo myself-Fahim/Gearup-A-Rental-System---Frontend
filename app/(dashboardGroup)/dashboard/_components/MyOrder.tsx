@@ -6,9 +6,9 @@ import { orderDataType } from '../../_types/dashboard.type';
 const MyOrder = async()=> {
     const orders = await getMyOrder() 
     const ordersData = orders.data
-    const orderToShow = ordersData.filter((order: orderDataType) => order.status !== 'RETURNED')
+    const orderToShow =ordersData ?  ordersData.filter((order: orderDataType) => order.status !== 'RETURNED') : []
 
-    if(!ordersData || ordersData.length === 0){
+    if(!orderToShow || orderToShow.length === 0){
         return <p className='text-gray-500 text-center mt-30'>No order to show</p>
     }
     return (
